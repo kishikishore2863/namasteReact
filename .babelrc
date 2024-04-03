@@ -1,0 +1,3 @@
+{
+  //   "plugin": [["transfrom-remove-console", { "exclude": ["error", "warn"] }]]
+}
