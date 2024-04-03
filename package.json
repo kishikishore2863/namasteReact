@@ -1,0 +1,22 @@
+{
+  "name": "erareact",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kishikishore2863/namasteReact.git"
+  },
+  "author": "Kishore",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kishikishore2863/namasteReact/issues"
+  },
+  "homepage": "https://github.com/kishikishore2863/namasteReact#readme",
+  "devDependencies": {
+    "parcel": "^2.12.0"
+  }
+}
