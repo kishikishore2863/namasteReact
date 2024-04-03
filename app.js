@@ -13,7 +13,7 @@ const head2 = React.createElement(
   {
     key: "1",
   },
-  "shree"
+  "kishore"
 );
 const container = React.createElement(
   "div",
@@ -24,7 +24,7 @@ const container = React.createElement(
 );
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-const x = React.createElement("p", {}, "i love shree");
+const x = React.createElement("p", {}, "kishore");
 const xroot = ReactDOM.createRoot(document.getElementById("ki"));
 root.render(container);
 xroot.render(x);
@@ -33,7 +33,7 @@ const para = React.createElement(
   "p",
   {
     id: "kig",
-    kishi: "shree ",
+    kishi: "kick",
   },
   "dgjksdfgkahjskgfhjasgdfhkasdfg"
 );
