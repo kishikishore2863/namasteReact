@@ -1,5 +1,20 @@
-const head = React.createElement("h1", {}, "kishi");
-const head2 = React.createElement("h2", {}, "shree");
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+const head = React.createElement(
+  "h1",
+  {
+    key: "2",
+  },
+  "kishi"
+);
+const head2 = React.createElement(
+  "h2",
+  {
+    key: "1",
+  },
+  "shree"
+);
 const container = React.createElement(
   "div",
   {
@@ -24,3 +39,9 @@ const para = React.createElement(
 );
 const pararoot = ReactDOM.createRoot(document.getElementById("p"));
 pararoot.render(para);
+
+const heading2 = (
+  <h1 id="title" key="h2">
+    namaste react
+  </h1>
+);
