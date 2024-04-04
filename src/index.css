@@ -1,0 +1,25 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navitem {
+  display: flex;
+  list-style: none;
+  padding: 3px;
+}
+
+.card {
+  width: 200px;
+  border: 1px;
+}
+
+.card > img {
+  width: 100%;
+}
+
+.Body {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
