@@ -22,7 +22,7 @@ export default Header;
 const Title = () => {
   return (
     <>
-      <h1>Belluli Kabab</h1>
+      <h1>BELLULI KEBAB</h1>
     </>
   );
 };
