@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
+import useOnline from "../utils/useOnline";
 
 const Header = () => {
+  const online = useOnline();
   return (
     <>
       <div className="navbar">
         <div>
           <Title />
+          <h1>{online ? "🟢" : "🔴"}</h1>
         </div>
         <div>
           <ul className="navitem">

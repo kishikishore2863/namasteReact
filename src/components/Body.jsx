@@ -1,14 +1,10 @@
 import { DATA } from "./config";
 import { IMG_CDN_URL } from "./config";
 import { useEffect, useState } from "react";
+import { filterData } from "../utils/helper";
+import useOnline from "../utils/useOnline";
 
 console.log("1");
-
-function filterData(searchTxt, restaurant) {
-  return restaurant.filter((restaurant) => {
-    return restaurant.info.name.includes(searchTxt);
-  });
-}
 
 const ResturauntCard = ({ restaurant }) => {
   return (
@@ -46,6 +42,11 @@ const Body = () => {
     console.log(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+  }
+
+  const online = useOnline();
+  if (!online) {
+    return <h1> offline</h1>;
   }
 
   return (

@@ -7,6 +7,8 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Error from "./components/Error";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import RestraurantMenu from "./components/RestraurantMenu";
+import Profile from "./components/Profile";
 
 const HeaderComponent = () => {
   return (
@@ -31,10 +33,20 @@ const approuter = createBrowserRouter([
       {
         path: "/About",
         element: <About />,
+        children: [
+          {
+            path: "profile",
+            element: <Profile />,
+          },
+        ],
       },
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/rest",
+        element: <RestraurantMenu />,
       },
     ],
   },
