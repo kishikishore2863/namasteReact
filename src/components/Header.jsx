@@ -5,7 +5,7 @@ const Header = () => {
   const online = useOnline();
   return (
     <>
-      <div className="navbar">
+      {/* <div className="navbar">
         <div>
           <Title />
           <h1>{online ? "🟢" : "🔴"}</h1>
@@ -22,6 +22,19 @@ const Header = () => {
               <Link to="/About">About</Link>
             </li>
             <li>Contact</li>
+          </ul>
+        </div>
+      </div> */}
+      <div className="w-full flex justify-between h-[100px] p-[20px] bg-gray-200 shadow-lg">
+        <div>
+          <h1 className="text-4xl tex font-bold italic">QuickEats</h1>
+        </div>
+        <div>
+          <ul>
+            <Link className="p-[10px] text-xl"></Link>
+            <Link className="p-[10px] text-xl">Menu</Link>
+            <Link className="p-[10px] text-xl">Cart</Link>
+            <Link className="p-[10px] text-xl">About</Link>
           </ul>
         </div>
       </div>

@@ -1,30 +1,14 @@
-import { DATA } from "./config";
-import { IMG_CDN_URL } from "./config";
 import { useEffect, useState } from "react";
 import { filterData } from "../utils/helper";
 import useOnline from "../utils/useOnline";
-
-console.log("1");
-
-const ResturauntCard = ({ restaurant }) => {
-  return (
-    <>
-      <div className="card">
-        <img src={IMG_CDN_URL + restaurant.info.cloudinaryImageId} />
-        <h2>{restaurant.info.name}</h2>
-        <h3>{restaurant.info.cuisines.join(", ")}</h3>
-        <h4>{restaurant.info.areaName}</h4>
-      </div>
-    </>
-  );
-};
-
-const resturantList = DATA;
+import ResturauntCard, { withPromotedLabel } from "./ResturantCard";
+import { Link } from "react-router-dom";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
   console.log("B");
   const [searchTxt, setSearchTxt] = useState();
-  const [restaurant, setRestaurant] = useState(resturantList);
+  const [restaurant, setRestaurant] = useState([]);
 
   useEffect(() => {
     apiFetch();
@@ -48,7 +32,9 @@ const Body = () => {
   if (!online) {
     return <h1> offline</h1>;
   }
-
+  if (restaurant.length === 0) {
+    return <Shimmer />;
+  }
   return (
     <>
       <div>
@@ -70,9 +56,11 @@ const Body = () => {
           Search
         </button>
       </div>
-      <div className="Body">
+      <div className="Body flex flex-wrap   ">
         {restaurant.map((restaurant) => (
-          <ResturauntCard key={restaurant.info.id} restaurant={restaurant} />
+          <Link to={"/restaurant" + restaurant.id}>
+            <ResturauntCard restaurant={restaurant} />
+          </Link>
         ))}
       </div>
     </>
@@ -80,3 +68,17 @@ const Body = () => {
 };
 
 export default Body;
+
+{
+  /* <Link
+// key={restaurant.data.id}
+// to={"/resturants/" + restaurant.data.id}
+>
+  {restaurant.data.promoted ? (
+    <withPromotedLabel resData={restaurant} />
+  ) : (
+    <ResturauntCard resData={restaurant} />
+  )}
+  <ResturauntCard key={restaurant.info.id} restaurant={restaurant} />
+</Link> */
+}

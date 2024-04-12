@@ -1,21 +1,33 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { IMG_CDN_URL } from "./config";
+import { filterData } from "../utils/helper";
+import Shimmer from "./Shimmer";
 const RestraurantMenu = () => {
   const { resId } = useParams();
-  const [restaurant, setRestaurant] = useState({});
+  const [restaurant, setRestaurant] = useState(null);
   useEffect(() => {
     fetchData();
   }, []);
   async function fetchData() {
     const data = await fetch(
-      `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9993221&lng=77.5285469&restaurantId=614178&catalog_qa=undefined&isMenuUx4=true&submitAction=ENTER`
+      `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9993221&lng=77.5285469&restaurantId=${resId}&catalog_qa=undefined&isMenuUx4=true&submitAction=ENTER`
     );
     const json = await data.json();
-    console.log(json.data.cards[2].card.card.info);
-    setRestaurant(json.data.cards[2].card.card.info);
-    console.log(json.data.cards);
+    console.log(json);
+    // const filterData =
+    //   json.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards.filter(
+    //     (c) =>
+    //       c.card.card?.["@type"] ==
+    //       "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    //   );
+    const tempfilter = json.data;
+    setRestaurant(tempfilter);
   }
+  if (!restaurant) {
+    return <Shimmer />;
+  }
+
   return (
     <>
       <div>
