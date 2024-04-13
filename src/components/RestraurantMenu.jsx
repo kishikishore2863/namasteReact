@@ -1,47 +1,57 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { IMG_CDN_URL } from "./config";
-import { filterData } from "../utils/helper";
+
 import Shimmer from "./Shimmer";
 const RestraurantMenu = () => {
   const { resId } = useParams();
-  const [restaurant, setRestaurant] = useState(null);
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const [categories, setCategories] = useState(null);
+  const [restaurantInfo, setRestaurantInfo] = useState(null);
+
   async function fetchData() {
     const data = await fetch(
-      `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9993221&lng=77.5285469&restaurantId=${resId}&catalog_qa=undefined&isMenuUx4=true&submitAction=ENTER`
+      `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=17.4065&lng=78.4772&restaurantId=${resId}&catalog_qa=undefined&isMenuUx4=true&submitAction=ENTER`
     );
     const json = await data.json();
     console.log(json);
-    // const filterData =
-    //   json.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards.filter(
-    //     (c) =>
-    //       c.card.card?.["@type"] ==
-    //       "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
-    //   );
-    const tempfilter = json.data;
-    setRestaurant(tempfilter);
+    const categories =
+      json.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+        (c) =>
+          c.card?.card?.["@type"] ===
+          "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+      );
+
+    setCategories(categories);
+    setRestaurantInfo(json.data?.cards[2].card.card.info);
+    console.log(json.data?.cards[2].card.card.info);
+    console.log(categories);
   }
-  if (!restaurant) {
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  if (restaurantInfo === null) {
     return <Shimmer />;
   }
 
   return (
     <>
-      <div>
-        <div>
-          <img src={IMG_CDN_URL + restaurant.cloudinaryImageId} />
-          <h1>restaurant id:{resId} </h1>
-          <h2>{restaurant.name}</h2>
-          <h3>{restaurant.area}</h3>
-          <h3>{restaurant.city}</h3>
-          <h4>{restaurant.avgRating}Star</h4>
-        </div>
-        <div>
-          <h1>Menu</h1>
-          <ul>{}</ul>
+      <div className="w-[800px]  p-2">
+        <h1 className="text-2xl font-bold">{restaurantInfo.name}</h1>
+        <div className="h-[196px] w-[768px] shadow-2xl p-2 rounded-lg">
+          <h2 className="text-xl font-semibold">
+            ✪{restaurantInfo.avgRating}
+            <span className="m-2">({restaurantInfo.totalRatingsString})</span>
+            {"•"}
+            <span className="m-2">{restaurantInfo.costForTwoMessage}</span>
+          </h2>
+          <h3 className="text-red-400 ">
+            {restaurantInfo.cuisines.join(",")}{" "}
+          </h3>
+          <h3 className="">
+            Outlet{" "}
+            <span className="text-gray-500">{restaurantInfo.areaName}</span>
+          </h3>
         </div>
       </div>
     </>

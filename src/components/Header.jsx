@@ -27,7 +27,9 @@ const Header = () => {
       </div> */}
       <div className="w-full flex justify-between h-[100px] p-[20px] bg-gray-200 shadow-lg">
         <div>
-          <h1 className="text-4xl tex font-bold italic">QuickEats</h1>
+          <Link to="/">
+            <h1 className="text-4xl tex font-bold italic">QuickEats</h1>{" "}
+          </Link>
         </div>
         <div>
           <ul>

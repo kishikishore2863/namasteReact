@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 
 const Body = () => {
-  console.log("B");
   const [searchTxt, setSearchTxt] = useState();
   const [restaurant, setRestaurant] = useState([]);
 
@@ -16,14 +15,11 @@ const Body = () => {
 
   async function apiFetch() {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9634&lng=77.5855&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.4065&lng=78.4772&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-    console.log(json);
+    // console.log(json);
     setRestaurant(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    console.log(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   }
@@ -51,14 +47,19 @@ const Body = () => {
           onClick={() => {
             const data = filterData(searchTxt, restaurant);
             setRestaurant(data);
+            const log = setRestaurant(data);
+            console.log(log);
           }}
         >
           Search
         </button>
       </div>
       <div className="Body flex flex-wrap   ">
-        {restaurant.map((restaurant) => (
-          <Link to={"/restaurant" + restaurant.id}>
+        {restaurant.map((restaurant, key) => (
+          <Link
+            to={"/restaurant/" + restaurant.info.id}
+            key={restaurant.info.id}
+          >
             <ResturauntCard restaurant={restaurant} />
           </Link>
         ))}
@@ -68,17 +69,3 @@ const Body = () => {
 };
 
 export default Body;
-
-{
-  /* <Link
-// key={restaurant.data.id}
-// to={"/resturants/" + restaurant.data.id}
->
-  {restaurant.data.promoted ? (
-    <withPromotedLabel resData={restaurant} />
-  ) : (
-    <ResturauntCard resData={restaurant} />
-  )}
-  <ResturauntCard key={restaurant.info.id} restaurant={restaurant} />
-</Link> */
-}
