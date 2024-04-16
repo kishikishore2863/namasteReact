@@ -9,13 +9,17 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import RestraurantMenu from "./components/RestraurantMenu";
 import Profile from "./components/Profile";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 
 const HeaderComponent = () => {
   return (
     <>
-      <Header />
-      <Outlet />
-      <Footer />
+      <Provider store={appStore}>
+        <Header />
+        <Outlet />
+        <Footer />
+      </Provider>
     </>
   );
 };

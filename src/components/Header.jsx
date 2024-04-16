@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const online = useOnline();
+  const cartItems = useSelector((store) => store.cart.items);
   return (
     <>
       {/* <div className="navbar">
@@ -35,7 +37,9 @@ const Header = () => {
           <ul>
             <Link className="p-[10px] text-xl"></Link>
             <Link className="p-[10px] text-xl">Menu</Link>
-            <Link className="p-[10px] text-xl">Cart</Link>
+            <Link className="p-[10px] text-xl">
+              Cart({cartItems.length}items)
+            </Link>
             <Link className="p-[10px] text-xl">About</Link>
           </ul>
         </div>

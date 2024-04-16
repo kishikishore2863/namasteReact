@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Restraurantcategory from "./RestaurantCategory";
-
 import Shimmer from "./Shimmer";
+import { REST_URL } from "./config";
+
 const RestraurantMenu = () => {
   const { resId } = useParams();
   const [categories, setCategories] = useState(null);
@@ -10,11 +11,9 @@ const RestraurantMenu = () => {
   const [showIndex, setShowIndex] = useState(null);
 
   async function fetchData() {
-    const data = await fetch(
-      `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=17.4065&lng=78.4772&restaurantId=${resId}&catalog_qa=undefined&isMenuUx4=true&submitAction=ENTER`
-    );
+    const data = await fetch(REST_URL + resId);
     const json = await data.json();
-    console.log(json);
+
     const categories =
       json.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
         (c) =>
@@ -24,8 +23,6 @@ const RestraurantMenu = () => {
 
     setCategories(categories);
     setRestaurantInfo(json.data?.cards[2].card.card.info);
-    console.log(json.data?.cards[2].card.card.info);
-    console.log(categories);
   }
 
   useEffect(() => {
@@ -63,7 +60,9 @@ const RestraurantMenu = () => {
               key={category?.card?.card?.title}
               data={category?.card?.card}
               showItems={index === showIndex ? true : false}
-              setShowItem={() => setShowIndex(index)}
+              setShowItem={() =>
+                index === showIndex ? setShowIndex(null) : setShowIndex(index)
+              }
             />
           ))}
         </div>

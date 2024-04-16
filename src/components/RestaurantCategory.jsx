@@ -2,10 +2,9 @@ import ItemList from "./ItemList";
 const Restraurantcategory = ({ data, showItems, setShowItem }) => {
   console.log(data);
   const handleClick = () => {
-    if (setShowItem() === showItems) {
-      return setShowItem(null);
-    }
+    setShowItem();
   };
+
   return (
     <>
       <div>
