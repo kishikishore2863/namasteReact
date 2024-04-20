@@ -1,7 +1,7 @@
 export const IMG_CDN_URL =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 export const REST_URL =
-  "https://thingproxy-760k.onrender.com/fetch/https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=21.1938&lng=81.3509&restaurantId=";
+  "https://thingproxy-760k.onrender.com/fetch/https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9716&lng=77.5946&restaurantId=";
 
 // https://thingproxy-760k.onrender.com/fetch/
 

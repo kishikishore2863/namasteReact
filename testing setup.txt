@@ -1,0 +1,9 @@
+setting up testing in our app
+-install React testing Library
+-install jest
+-install babel dependencies
+-configure babel
+-configure parcel config file to disable default babel transpilation
+-Jest -npx jest --init
+-indtall jsdom Library
+ 

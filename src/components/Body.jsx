@@ -15,10 +15,10 @@ const Body = () => {
 
   async function apiFetch() {
     const data = await fetch(
-      "https://thingproxy-760k.onrender.com/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.4065&lng=78.4772&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9716&lng=77.5946&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-    // console.log(json);
+    console.log(json);
     setRestaurant(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
@@ -28,12 +28,13 @@ const Body = () => {
   if (!online) {
     return <h1> offline</h1>;
   }
+  console.log(restaurant);
   if (restaurant.length === 0) {
     return <Shimmer />;
   }
   return (
     <>
-      <div>
+      <div className="w-full h">
         <input
           type="text"
           className="seacrch-input"

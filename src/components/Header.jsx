@@ -37,7 +37,7 @@ const Header = () => {
           <ul>
             <Link className="p-[10px] text-xl"></Link>
             <Link className="p-[10px] text-xl">Menu</Link>
-            <Link className="p-[10px] text-xl">
+            <Link to="/cart" className="p-[10px] text-xl">
               Cart({cartItems.length}items)
             </Link>
             <Link className="p-[10px] text-xl">About</Link>
@@ -48,11 +48,3 @@ const Header = () => {
   );
 };
 export default Header;
-
-const Title = () => {
-  return (
-    <>
-      <h1>BELLULI KEBAB</h1>
-    </>
-  );
-};

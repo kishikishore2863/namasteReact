@@ -11,6 +11,7 @@ import RestraurantMenu from "./components/RestraurantMenu";
 import Profile from "./components/Profile";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
+import Cart from "./components/Cart";
 
 const HeaderComponent = () => {
   return (
@@ -34,6 +35,8 @@ const approuter = createBrowserRouter([
         path: "/",
         element: <Body />,
       },
+
+      { path: "/cart", element: <Cart /> },
       {
         path: "/About",
         element: <About />,
