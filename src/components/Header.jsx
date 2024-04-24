@@ -38,7 +38,7 @@ const Header = () => {
             <Link className="p-[10px] text-xl"></Link>
             <Link className="p-[10px] text-xl">Menu</Link>
             <Link to="/cart" className="p-[10px] text-xl">
-              Cart({cartItems.length}items)
+              Cart({cartItems.length})
             </Link>
             <Link className="p-[10px] text-xl">About</Link>
           </ul>
