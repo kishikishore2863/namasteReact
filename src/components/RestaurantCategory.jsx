@@ -12,7 +12,7 @@ const Restraurantcategory = ({ data, showItems, setShowItem }) => {
           onClick={handleClick}
         >
           <span>
-            {data.title}({data.itemCards.length})
+            {data.title}( {data.itemCards.length})
           </span>
           <span>{"👇"}</span>
         </div>

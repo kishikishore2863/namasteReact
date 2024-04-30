@@ -1,10 +1,25 @@
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import setUserLocation from "../utils/locationSlice";
 const Header = () => {
+  const dispatch = useDispatch();
   const online = useOnline();
   const cartItems = useSelector((store) => store.cart.items);
+  const handleLocation = async () => {
+    const fetchLocation = await navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        const userLocation = { latitude, longitude };
+        dispatch(setUserLocation(userLocation));
+      }
+    );
+    console.log(fetchLocation);
+    // if (fetchLocation) {
+    //   const suni = fetchLocation;
+    //   console.log(suni);
+    // }
+  };
   return (
     <>
       {/* <div className="navbar">
@@ -32,6 +47,14 @@ const Header = () => {
           <Link to="/">
             <h1 className="text-4xl tex font-bold italic">QuickEats</h1>{" "}
           </Link>
+          <button
+            className="text-black"
+            onClick={() => {
+              handleLocation();
+            }}
+          >
+            location
+          </button>
         </div>
         <div>
           <ul>
